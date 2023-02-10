@@ -24,6 +24,10 @@ def score(current_cards):
 def newCard():
     return int(choice(cards))
 
+def showHands(player_cards, dealer_cards):
+    print(f'Final hand: {player_cards}, final score {score(player_cards)}')
+    print(f"Dealer's final hand {dealer_cards}, final score {score(dealer_cards)}")
+
 def endGame(player_cards, dealer_cards, bust = False, bj = False):
     print("")
     player_score = score(player_cards)
@@ -34,29 +38,24 @@ def endGame(player_cards, dealer_cards, bust = False, bj = False):
         dealer_score = score(dealer_cards)
 
     if bj == True:
-        print(f'Final hand: {player_cards}, final score {score(player_cards)}')
-        print(f"Dealer's final hand {dealer_cards}, final score {score(dealer_cards)}")
+        showHands(player_cards, dealer_cards)
         print("BLACKJACK 🃏 You won! 😎")
     
     elif bust == True:
-        print(f'Final hand: {player_cards}, final score {score(player_cards)}')
-        print(f"Dealer's final hand {dealer_cards}, final score {score(dealer_cards)}")
+        showHands(player_cards, dealer_cards)
         print("You bust! 💣")
     
     else:        
         if player_score > dealer_score or dealer_score > 21:
-            print(f'Final hand: {player_cards}, final score {score(player_cards)}')
-            print(f"Dealer's final hand {dealer_cards}, final score {score(dealer_cards)}")
+            showHands(player_cards, dealer_cards)
             print("You won! 😎")
     
         elif player_score == dealer_score:
-            print(f'Final hand: {player_cards}, final score {score(player_cards)}')
-            print(f"Dealer's final hand {dealer_cards}, final score {score(dealer_cards)}")
+            showHands(player_cards, dealer_cards)
             print("Draw! 😢")
     
         else:
-            print(f'Final hand: {player_cards}, final score {score(player_cards)}')
-            print(f"Dealer's final hand {dealer_cards}, final score {score(dealer_cards)}")
+            showHands(player_cards, dealer_cards)
             print("You lose! 🤬")
     
     print("Do you want to play a new game? y/n:") 
@@ -86,11 +85,8 @@ def game():
 
         if(answer == 'y'):
             player_cards.append(newCard())
-            if score(player_cards) > 21:
+            if score(player_cards) >= 21:
                 endGame(player_cards, dealer_cards, bust=True)
-                break
-            elif score(player_cards) == 21:
-                endGame(player_cards, dealer_cards, bj=True)
                 break
         elif(answer == 'n'):
             endGame(player_cards, dealer_cards)
