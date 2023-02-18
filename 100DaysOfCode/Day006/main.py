@@ -1,7 +1,7 @@
 import pandas as pd
 
 df = pd.DataFrame()
-df = pd.read_csv(r'Day 6\NetflixOriginals.csv', encoding_errors='ignore')
+df = pd.read_csv(r'Day006\NetflixOriginals.csv', encoding_errors='ignore')
 index = df.index
 
 def getGenre(genero):
