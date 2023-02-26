@@ -1,0 +1,13 @@
+PLACEHOLDER = "[name]"
+
+with open(r"100DaysOfCode\Day018\Input\Names\invited_names.txt") as names_file:
+    names = names_file.readlines()
+    print(names)
+
+with open(r"100DaysOfCode\Day018\Input\Letters\starting_letter.txt") as letter_file:
+    letter_contents = letter_file.read()
+    for name in names:
+        stripped_name = name.strip()
+        new_letter = letter_contents.replace(PLACEHOLDER, stripped_name)
+        with open(f"100DaysOfCode\Day018\Output\letter_for_{stripped_name}.txt", "w") as completed_letter:
+            completed_letter.write(new_letter)
